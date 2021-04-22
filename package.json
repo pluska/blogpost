@@ -1,0 +1,67 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@babel/polyfill": "^7.12.1",
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.2",
+    "@testing-library/jest-dom": "^5.11.10",
+    "@testing-library/react": "^11.2.6",
+    "@testing-library/user-event": "^12.8.3",
+    "@types/react-router-dom": "^5.1.7",
+    "axios": "^0.21.1",
+    "markdown-to-jsx": "^7.1.2",
+    "morgan": "^1.10.0",
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
+    "react": "^17.0.2",
+    "react-confirm-alert": "^2.7.0",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.3",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.3",
+    "react-toastify": "^7.0.3",
+    "redux": "^4.0.5",
+    "redux-devtools": "^3.7.0",
+    "redux-thunk": "^2.3.0",
+    "sequelize": "^6.6.2",
+    "styled-components": "^5.2.3",
+    "web-vitals": "^1.1.1"
+  },
+  "presets": [
+    "@babel/preset-env"
+  ],
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.13.14",
+    "@babel/core": "^7.13.15",
+    "@babel/node": "^7.13.13",
+    "@babel/preset-env": "^7.13.15",
+    "@iconify-icons/mdi": "^1.1.14",
+    "@iconify/react": "^1.1.4",
+    "nodemon": "^2.0.7",
+    "serverless-offline": "^6.9.0"
+  }
+}

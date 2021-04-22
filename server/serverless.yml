@@ -1,0 +1,123 @@
+service: to-post
+
+custom:
+  secrets: ${file(secrets.json)}
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: 20201221
+  timeout: 30
+  stage: ${self:custom.secrets.NODE_ENV}
+  environment: 
+    NODE_ENV: ${self:custom.secrets.NODE_ENV}
+    DB_NAME: ${self:custom.secrets.DB_NAME}
+    DB_USER: ${self:custom.secrets.DB_USER}
+    DB_PASSWORD: ${self:custom.secrets.DB_PASSWORD}
+    DB_HOST: ${self:custom.secrets.DB_HOST}
+    DB_PORT: ${self:custom.secrets.DB_PORT}
+  vpc:
+    securityGroupIds:
+      - ${self:custom.secrets.SECURITY_GROUP_ID}
+    subnetIds:
+      - ${self:custom.secrets.SUBNET1_ID}
+      - ${self:custom.secrets.SUBNET2_ID}
+      - ${self:custom.secrets.SUBNET3_ID}
+      - ${self:custom.secrets.SUBNET4_ID}
+      - ${self:custom.secrets.SUBNET5_ID}
+      - ${self:custom.secrets.SUBNET6_ID} 
+
+functions:
+  healthCheck:
+    handler: handler.healthCheck
+    events:
+      - http:
+          path: /
+          method: get
+          cors: true
+  createPost:
+    handler: handler.createPost
+    events:
+      - http:
+          path: post
+          method: post
+          cors: true
+  getPost:
+    handler: handler.getOnePost
+    events:
+      - http:
+          path: post/{id}
+          method: get
+          cors: true
+  getAllPosts:
+    handler: handler.getAllPosts
+    events:
+     - http:
+         path: posts
+         method: get
+         cors: true
+  getAllPostsByAuthor:
+    handler: handler.getAllPostsByAuthor
+    events:
+     - http:
+         path: author/posts/{id}
+         method: get
+         cors: true
+  updatePost:
+    handler: handler.updatePost
+    events:
+     - http:
+         path: post/{id}
+         method: put
+         cors: true
+  destroyPost:
+    handler: handler.destroyPost
+    events:
+     - http:
+         path: post/{id}
+         method: delete
+         cors: true
+  createAuthor:
+    handler: handler.createAuthor
+    events:
+      - http:
+         path: author
+         method: post
+         cors: true
+  getOneAuthor:
+    handler: handler.getOneAuthor
+    events:
+      - http:
+         path: author/{id}
+         method: get
+         cors: true
+  getAllAuthors:
+    handler: handler.getAllAuthors
+    events:
+     - http:
+         path: authors
+         method: get
+         cors: true
+  updateAuthor:
+    handler: handler.updateAuthor
+    events:
+     - http:
+         path: author/{id}
+         method: put
+         cors: true
+  destroyAuthor:
+    handler: handler.destroyAuthor
+    events:
+     - http:
+         path: author/{id}
+         method: delete
+         cors: true
+  login:
+    handler: handler.login
+    events:
+      - http:
+         path: login
+         method: post
+         cors: true
+plugins:
+  - serverless-offline

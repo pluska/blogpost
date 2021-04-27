@@ -9,9 +9,7 @@ In the principal project directory, you can run:
 ### `npm start`
 
 Runs the app in the development mode.\
+To run the server use "sls offline" on the server folder
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The connection to AWS couldn't be posible, because my account is related to the company where I currently work

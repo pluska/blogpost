@@ -1,25 +1,21 @@
 import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import Drawer from "@material-ui/core/Drawer";
-import Box from "@material-ui/core/Box";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
 import List from "@material-ui/core/List";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import { AuthorsComponent } from "../AuthorsComponent/index";
 import { getAuthors } from "../../redux/services";
 
-const drawerWidth = 240;
+const drawerWidth = 320;
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
   },
   toolbar: {
-    paddingleft: 24, // keep right padding when drawer closed
+    paddingleft: 15, // keep right padding when drawer closed
   },
   toolbarIcon: {
     display: "flex",
@@ -44,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     }),
   },
   menuButton: {
-    marginRight: 36,
+    marginRight: 10,
   },
   menuButtonHidden: {
     display: "none",
@@ -104,15 +100,7 @@ export const SideBar = () => {
   }, []);
 
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-  console.log(authors.map)
+  const open = true
   return (
     <Drawer
       variant="permanent"
@@ -130,7 +118,7 @@ export const SideBar = () => {
             return (
                 <div key={authors.id}>
                 <Divider />
-              <AuthorsComponent key={authors.id} authors={authors} />
+              <AuthorsComponent key={authors.id} {...authors} />
             </div>
           );
         })}

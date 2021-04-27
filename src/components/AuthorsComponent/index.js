@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const AuthorsComponent = (authors) => {
-  const author = authors.authors
+  const author = authors
   const classes = useStyles();
   return (
     <Link to={"/author/posts/" + author.id} style={{ textDecoration: "none" }}>

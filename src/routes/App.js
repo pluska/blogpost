@@ -7,7 +7,6 @@ import Login from "../containers/Login";
 import SingIn from "../containers/Signin";
 import NewPost from "../containers/NewPost";
 import Blog from "../containers/Blog";
-import { Authors } from "../containers/Authors";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { PostsByAuthor } from "../containers/PostsByAuthor";
@@ -34,7 +33,6 @@ const App = () => {
             path="/author/posts/:authorId"
             component={PostsByAuthor}
           />
-          <Route exact path="/authors" component={Authors} />
           <Route component={EditPost} exact path="/admin/posts/:id"/>
           <Route component={EditAuthor} exact path="/admin/profile/"/>
           <Context.Consumer>

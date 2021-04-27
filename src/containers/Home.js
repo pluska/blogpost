@@ -1,16 +1,10 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { Post } from "../components/posts";
 import { Navbar } from "../components/Navbar";
-import {SideBar} from "../components/SideBar"
+import { SideBar } from "../components/SideBar";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { theme } from "../components/Themes";
-import {
-  Grid,
-  InputBase,
-  makeStyles,
-  fade,
-  Box
-} from "@material-ui/core/";
+import { Grid, InputBase, makeStyles, fade, Box } from "@material-ui/core/";
 import SearchIcon from "@material-ui/icons/Search";
 import { getPosts } from "../redux/services";
 
@@ -90,58 +84,65 @@ export const Home = () => {
     loadingPost();
   }, []);
 
-  const [filter, setFilter] = useState("Search here");
-  const [filterPosts, setFilterPosts] = useState(posts)
+  const [filter, setFilter] = useState("");
+  const [filterPosts, setFilterPosts] = useState(posts);
 
   useMemo(() => {
-   const result = posts.filter((post) => {
+    const result = posts.filter((post) => {
       if (post.title) {
         return post.title.toLowerCase().includes(filter.toLowerCase());
       }
-      return post.title
+      return post.title;
     });
+    console.log(result);
 
-    setFilterPosts(result)
-  }, [posts, filter])
+    setFilterPosts(result);
+  }, [posts, filter]);
   return (
     <ThemeProvider theme={theme}>
       <Navbar />
-        {/* <SideBar/> */}
       <Grid container direction="row" justify="center">
-        <Box
-          bgcolor="primary.main"
-          borderRadius="borderRadius"
-          color="#ffffff"
-          m={4}
-          p={2}
-        >
-          <SearchIcon />
-          <InputBase
-            classes={{
-              root: classes.inputRoot,
-              input: classes.inputInput,
-            }}
-            inputProps={{ "aria-label": "search" }}
-            value={filter}
-            onChange={(e) => {
-              setFilter(e.target.value);
-            }}
-          />
-        </Box>
-      </Grid>
-      <Grid container direction="row">
-        {posts.map((filterPosts) => {
-          return (
-            <Grid
-            bgcolor="text.secondary"
-            container
-            sm={4}
-            key={filterPosts.id}
+        <Grid container direction="col" sm={3} justify="center">
+          <SideBar />
+        </Grid>
+        <Grid container direction="col" sm={9} justify="center">
+          <Grid container direction="row" justify="center">
+            <Box
+              bgcolor="primary.main"
+              borderRadius="borderRadius"
+              color="#ffffff"
+              m={4}
+              p={2}
             >
-              <Post {...filterPosts} />
-            </Grid>
-          );
-        })}
+              <SearchIcon />
+              <InputBase
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput,
+                }}
+                inputProps={{ "aria-label": "search" }}
+                value={filter}
+                onChange={(e) => {
+                  setFilter(e.target.value);
+                }}
+              />
+            </Box>
+          </Grid>
+          <Grid container direction="row">
+            {filterPosts.map((filterPosts) => {
+              return (
+                <Grid
+                  bgcolor="text.secondary"
+                  container
+                  sm={4}
+                  key={filterPosts.id}
+                >
+                  <Post {...filterPosts} />
+                </Grid>
+              );
+            })}
+          </Grid>
+        </Grid>
       </Grid>
     </ThemeProvider>
   );

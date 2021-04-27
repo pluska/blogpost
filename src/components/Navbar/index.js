@@ -91,15 +91,6 @@ export const Navbar = () => {
               aria-label="menu"
               className={classes.menuButton}
             >
-              <Link to="/authors" style={{ textDecoration: "none" }}>
-                <Anchor>Authors</Anchor>
-              </Link>
-            </Button>
-            <Button
-              color="inherit"
-              aria-label="menu"
-              className={classes.menuButton}
-            >
               <Link to="/signin" style={{ textDecoration: "none" }}>
                 <Anchor>Sign in</Anchor>
               </Link>

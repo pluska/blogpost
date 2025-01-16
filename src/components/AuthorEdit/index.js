@@ -11,16 +11,14 @@ export const AuthorEdit = () => {
     const match = window.sessionStorage.getItem("token").toString();
     const [Author, setAuthor] = useState("");
     const history = useHistory();
-    const loadingAuthor = async () => {
-        const res = await getAuthor(match).then((Prom) => {
-            console.log(Prom);
-            return Prom;
-        });
-        setAuthor(res.data);
-    };
     useEffect(() => {
+        const loadingAuthor = async () => {
+            const res = await getAuthor(match);
+            setAuthor(res.data);
+        };
         loadingAuthor();
-    }, [loadingAuthor]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const handleInputChange = (e) => {
         setAuthor({ ...Author, [e.target.name]: e.target.value });

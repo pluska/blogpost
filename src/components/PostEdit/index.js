@@ -11,13 +11,14 @@ export const PostEdit = (matchPath) => {
     const match = matchPath.matchPath;
     const [post, setPost] = useState("");
     const history = useHistory();
-    const loadingPost = async () => {
-        const res = await getPostsById(match);
-        setPost(res.data);
-    };
     useEffect(() => {
+        const loadingPost = async () => {
+            const res = await getPostsById(match);
+            setPost(res.data);
+        };
         loadingPost();
-    }, [loadingPost]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const handleInputChange = (e) => {
         setPost({ ...post, [e.target.name]: e.target.value });
